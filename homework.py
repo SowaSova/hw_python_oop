@@ -12,7 +12,7 @@ class InfoMessage:
     distance: float
     speed: float
     calories: float
-    MESSAGE = (
+    MESSAGE: str = (
         'Тип тренировки: {training_type}; '
         'Длительность: {duration:.3f} ч.; '
         'Дистанция: {distance:.3f} км; '
@@ -25,15 +25,19 @@ class InfoMessage:
         return self.MESSAGE.format(**asdict(self))
 
 
-@dataclass
 class Training:
     """Базовый класс тренировки."""
-    action: int
-    duration: float
-    weight: float
-    LEN_STEP = 0.65
-    M_IN_KM = 1000
-    MIN_IN_H = 60
+    LEN_STEP: float = 0.65
+    M_IN_KM: int = 1000
+    MIN_IN_H: int = 60
+
+    def __init__(self,
+                 action: int,
+                 duration: float,
+                 weight: float) -> None:
+        self.action = action
+        self.duration = duration
+        self.weight = weight
 
     def get_distance(self) -> float:
         """Получить дистанцию в км."""
@@ -62,7 +66,6 @@ class Training:
                            )
 
 
-@dataclass
 class Running(Training):
     """Тренировка: бег."""
     RUN_COEFF1: int = 18
@@ -77,12 +80,19 @@ class Running(Training):
         return run_spent_calories
 
 
-@dataclass
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
-    height: float
     WLK_COEFF1: float = 0.035
     WLK_COEFF2: float = 0.029
+
+    def __init__(self,
+                 action: int,
+                 duration: float,
+                 weight: float,
+                 height: float
+                 ) -> None:
+        super().__init__(action, duration, weight)
+        self.height = height
 
     def get_spent_calories(self) -> float:
         """Расчёт потраченных калорий для спортивной ходьбы"""
@@ -94,14 +104,22 @@ class SportsWalking(Training):
         return wlk_spent_calories
 
 
-@dataclass
 class Swimming(Training):
     """Тренировка: плавание."""
-    count_pool: float
-    length_pool: float
     LEN_STEP: float = 1.38
     SWM_COEFF1: float = 1.1
     SWM_COEFF2: float = 2
+
+    def __init__(self,
+                 action: int,
+                 duration: float,
+                 weight: float,
+                 length_pool: float,
+                 count_pool: float
+                 ) -> None:
+        super().__init__(action, duration, weight)
+        self.length_pool = length_pool
+        self.count_pool = count_pool
 
     def get_mean_speed(self) -> float:
         """Расчёт средней скорости плавания."""
