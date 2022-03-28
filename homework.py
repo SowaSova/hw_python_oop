@@ -142,11 +142,10 @@ def read_package(workout_type: str, data: List[float]) -> Training:
         'RUN': Running,
         'WLK': SportsWalking
     }
-    training_data = training[workout_type](*data)
-
     if workout_type not in training:
         raise ValueError('Данные ошибочны.')
 
+    training_data = training[workout_type](*data)
     return training_data
 
 
