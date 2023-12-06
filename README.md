@@ -15,14 +15,15 @@
 
 ## Для запуска проекта:
 
+- Склонировать репозиторий и перейти в него
 ```bash
 git clone git@github.com:SowaSova/hw_python_oop.git
 ```
-
 ```bash
 cd hw_python_oop/
 ```
 
+- Установка и запуск виртуального окружения
 ```bash
 python -m venv venv
 ```
@@ -37,7 +38,7 @@ python -m venv venv
 . venv/bin/activate
 ```
 
-+ Установить зависимости из файла requirements.txt:
+- Установить зависимости из файла requirements.txt:
 ```bash
 python -m pip install --upgrade pip 
 ```
@@ -46,7 +47,7 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-+ Запустить проект:
+- Запустить проект:
 ```bash
 python homework.py
 ```
