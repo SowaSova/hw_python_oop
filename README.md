@@ -16,7 +16,7 @@
 ## Для запуска проекта:
 
 ```bash
-git clone git@github.com:sowasova/hw_python_oop.git
+git clone git@github.com:SowaSova/hw_python_oop.git
 ```
 
 ```bash
